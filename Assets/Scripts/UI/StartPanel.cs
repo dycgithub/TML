@@ -1,12 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class StartPanel : BasePanel
 {
     private static string name="StartPanel";
-    private static string path="StartPanel/StartPanel";
-    public static readonly UIType uiType=new UIType(name,path);
+    private static string path="UIStart/StartPanel";
+    public static readonly UIType uiType=new UIType(path,name);
     
     public StartPanel() : base(uiType)//将UI信息传到父类
     {
@@ -15,6 +16,8 @@ public class StartPanel : BasePanel
 
     public override void OnStart()
     {
+        //实例:为按钮添加监听事件
+        UIMethods.GetInstance().GetOrAddSingleComponentInChild< Button>(activePanel,"middle").onClick.AddListener(backk);
         base.OnStart();
         Debug.Log("StartPanel OnStart");
     }
@@ -35,5 +38,11 @@ public class StartPanel : BasePanel
     {
         base.OnDestroy();
         Debug.Log("StartPanel OnDestroy");
+    }
+    
+    //示例方法
+    private void backk()
+    {
+        GameRoot.GetInstance().UI_Root.Pop(false);
     }
 }

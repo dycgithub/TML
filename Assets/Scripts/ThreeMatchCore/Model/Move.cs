@@ -19,7 +19,7 @@ public struct Move
     public MoveDirection Direction { get; private set; }
     public int2 From { get; private set; }
     public int2 To { get; private set; }
-    public bool IsValid => Direction != MoveDirection.None;
+    public bool IsValid => Direction != MoveDirection.None;//属性，判断移动是否合法
 
     public Move(int2 coordinates, MoveDirection direction)//构造函数
     {
@@ -57,80 +57,87 @@ public struct Move
 
     public static Move FindMove (Match3GamePlay game)
 	{
-		int2 s = game.Size;
+		int2 s = game.Size;//获取游戏区域的尺寸
 		for (int2 c = 0; c.y < s.y; c.y++)
 		{
-			for (c.x = 0; c.x < s.x; c.x++)
+			for (c.x = 0; c.x < s.x; c.x++)//遍历所有块
 			{
-				TileState t = game[c];
-
-				if (c.x >= 3 && game[c.x - 2, c.y] == t && game[c.x - 3, c.y] == t)
+				TileState t = game[c];//获取当前块的类型
+				//0010
+				if (c.x >= 3 && game[c.x - 2, c.y] == t && game[c.x - 3, c.y] == t)//向左查找
 				{
 					return new Move(c, MoveDirection.Left);
 				}
-
-				if (c.x + 3 < s.x && game[c.x + 2, c.y] == t && game[c.x + 3, c.y] == t)
+				//0100
+				if (c.x + 3 < s.x && game[c.x + 2, c.y] == t && game[c.x + 3, c.y] == t)//向右查找
 				{
 					return new Move(c, MoveDirection.Right);
 				}
-
-				if (c.y >= 3 && game[c.x, c.y - 2] == t && game[c.x, c.y - 3] == t)
+				//0
+				//1
+				//0
+				//0
+				if (c.y >= 3 && game[c.x, c.y - 2] == t && game[c.x, c.y - 3] == t)//向下查找
 				{
 					return new Move(c, MoveDirection.Down);
 				}
-
-				if (c.y + 3 < s.y && game[c.x, c.y + 2] == t && game[c.x, c.y + 3] == t)
+				//0
+				//0
+				//1
+				//0
+				if (c.y + 3 < s.y && game[c.x, c.y + 2] == t && game[c.x, c.y + 3] == t)//向上查找
 				{
 					return new Move(c, MoveDirection.Up);
 				}
-
+				
 				if (c.y > 1)
 				{
 					if (c.x > 1 && game[c.x - 1, c.y - 1] == t)
 					{
-						if (
-							c.x >= 2 && game[c.x - 2, c.y - 1] == t ||
-							c.x + 1 < s.x && game[c.x + 1, c.y - 1] == t
-						)
+						//  0
+						//0010
+						if (c.x >= 2 && game[c.x - 2, c.y - 1] == t || c.x + 1 < s.x && game[c.x + 1, c.y - 1] == t)
 						{
-							return new Move(c, MoveDirection.Down);
+							return new Move(c, MoveDirection.Down);//四横
 						}
-						if (
-							c.y >= 2 && game[c.x - 1, c.y - 2] == t ||
-							c.y + 1 < s.y && game[c.x - 1, c.y + 1] == t
-						)
+						//0
+						//0
+						//10
+						//0
+						if (c.y >= 2 && game[c.x - 1, c.y - 2] == t || c.y + 1 < s.y && game[c.x - 1, c.y + 1] == t)
 						{
 							return new Move(c, MoveDirection.Left);
 						}
 					}
-
+					
 					if (c.x + 1 < s.x && game[c.x + 1, c.y - 1] == t)
 					{
+						//0
+						//100
 						if (c.x + 2 < s.x && game[c.x + 2, c.y - 1] == t)
 						{
 							return new Move(c, MoveDirection.Down);
 						}
-						if (
-							c.y >= 2 && game[c.x + 1, c.y - 2] == t ||
-							c.y + 1 < s.y && game[c.x + 1, c.y + 1] == t
-						)
+						//01
+						// 0
+						// 0
+						if (c.y >= 2 && game[c.x + 1, c.y - 2] == t || c.y + 1 < s.y && game[c.x + 1, c.y + 1] == t)
 						{
 							return new Move(c, MoveDirection.Right);
 						}
 					}
 				}
-
+				
 				if (c.y + 1 < s.y)
 				{
 					if (c.x > 1 && game[c.x - 1, c.y + 1] == t)
 					{
-						if (
-							c.x >= 2 && game[c.x - 2, c.y + 1] == t ||
-							c.x + 1 < s.x && game[c.x + 1, c.y + 1] == t
-						)	
+						//
+						if (c.x >= 2 && game[c.x - 2, c.y + 1] == t || c.x + 1 < s.x && game[c.x + 1, c.y + 1] == t)	
 						{
 							return new Move(c, MoveDirection.Up);
 						}
+						//
 						if (c.y + 2 < s.y && game[c.x - 1, c.y + 2] == t)
 						{
 							return new Move(c, MoveDirection.Left);
@@ -139,10 +146,12 @@ public struct Move
 
 					if (c.x + 1 < s.x && game[c.x + 1, c.y + 1] == t)
 					{
+						//
 						if (c.x + 2 < s.x && game[c.x + 2, c.y + 1] == t)
 						{
 							return new Move(c, MoveDirection.Up);
 						}
+						//
 						if (c.y + 2 < s.y && game[c.x + 1, c.y + 2] == t)
 						{
 							return new Move(c, MoveDirection.Right);

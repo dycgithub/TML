@@ -50,4 +50,7 @@ public class GameRoot : MonoBehaviour
         
         UI_Root.Push(new StartPanel());
     }
+    
+    //push的时候要有实例化的对象,通过继承baseUI父类来实例化resource里的预制体
+    
 }

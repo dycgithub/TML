@@ -5,36 +5,58 @@ using UnityEngine.EventSystems;
 public class ItemData : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler, IPointerDownHandler, IPointerEnterHandler, IPointerExitHandler
 {
     public Item item;
+    public int amount;
+    public int slotId;
+
+    private Inventory inv;
+    private Tooltip tooltip;
+    private Vector2 offset;
     
     
+    void Start()
+    {
+        inv = GameObject.Find("Inventory").GetComponent<Inventory>();
+        tooltip = inv.GetComponent<Tooltip>();
+    }
+
     public void OnBeginDrag(PointerEventData eventData)
     {
-        // 拖拽开始时的处理逻辑
+        if (item != null)
+        {
+            this.transform.SetParent(this.transform.parent.parent);
+            this.transform.position = eventData.position - offset;
+            GetComponent<CanvasGroup>().blocksRaycasts = false;
+        }
     }
 
     public void OnDrag(PointerEventData eventData)
     {
-        // 拖拽过程中的处理逻辑
+        if (item != null)
+        {
+            this.transform.position = eventData.position - offset;
+        }
     }
 
     public void OnEndDrag(PointerEventData eventData)
     {
-        // 拖拽结束时的处理逻辑
+        this.transform.SetParent(inv.slots[slotId].transform);
+        this.transform.position = inv.slots[slotId].transform.position;
+        GetComponent<CanvasGroup>().blocksRaycasts = true;
     }
 
     public void OnPointerDown(PointerEventData eventData)
     {
-        // 鼠标按下时的处理逻辑
+        offset = eventData.position - new Vector2(this.transform.position.x, this.transform.position.y);
     }
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        // 鼠标进入时的处理逻辑
+        tooltip.Activate(item);
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        // 鼠标退出时的处理逻辑
+        tooltip.Deactivate();
     }
 }
 

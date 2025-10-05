@@ -1,8 +1,7 @@
-using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.Serialization;
+using DG.Tweening;
+
 public class MoveMent : MonoBehaviour
 {
      public Vector2 speedRange = new (1f, 20f); 
@@ -65,12 +64,13 @@ public class MoveMent : MonoBehaviour
             ? _endNode
             : m_Graph.nodeList[Random.Range(0, m_Graph.nodeList.Count)].octreeNode;
         
-        bool randomSuc = m_Graph.AStar(startNode, endNode, ref m_AStarPathList);
+        bool randomSuc = m_Graph.AStar(startNode, endNode, ref m_AStarPathList);//获取最短移动路径
         if (randomSuc)
         {
             m_CurWayPoint = 0;
             speed = Random.Range(speedRange.x, speedRange.y);
             transform.position = startNode.bounds.center;
+            
         }
         else
         {

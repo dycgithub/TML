@@ -1,0 +1,11 @@
+function PropFunctionTest()
+    print("This is a test function in Prop.lua")
+    local AI=CS.UnityEngine.GameObject.Find("Skin")
+    if AI then
+        local auto=AI:GetComponent("Match3Skin")
+        if auto then
+            auto:DoAutomaticMove()
+            print("Called DoAutomaticMove on Match3Skin component")
+        end
+    end
+end

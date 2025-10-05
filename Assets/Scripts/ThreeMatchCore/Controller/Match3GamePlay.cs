@@ -64,7 +64,7 @@ public class Match3GamePlay : MonoBehaviour
 		do
 		{
 			FillGrid();
-			PossibleMove = Move.FindMove(this);
+			PossibleMove = Move.FindMove(this);//寻找可移动位置
 		}
 		while (!PossibleMove.IsValid);
 	}
@@ -195,8 +195,8 @@ public class Match3GamePlay : MonoBehaviour
 
 	bool FindMatches ()//消除逻辑
 	{
-		matches.Clear();//消除队列
-
+		matches.Clear();
+//横向检测
 		for (int y = 0; y < size.y; y++)
 		{
 			TileState start = grid[0, y];
@@ -223,7 +223,7 @@ public class Match3GamePlay : MonoBehaviour
 				matches.Add(new MatchPosition(size.x - length, y, length, true));
 			}
 		}
-
+//纵向检测
 		for (int x = 0; x < size.x; x++)
 		{
 			TileState start = grid[x, 0];

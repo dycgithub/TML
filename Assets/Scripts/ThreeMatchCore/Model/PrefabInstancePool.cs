@@ -24,13 +24,13 @@ public struct PrefabInstancePool<T> where T : MonoBehaviour
         }
 #endif
 		
-        if (pool.TryPop(out T instance))
+        if (pool.TryPop(out T instance))//尝试从栈中弹出一个元素
         {
             instance.gameObject.SetActive(true);
         }
         else
         {
-            instance = Object.Instantiate(prefab);
+            instance = Object.Instantiate(prefab);//池中没有对象则实例化
         }
         return instance;
     }
@@ -40,12 +40,12 @@ public struct PrefabInstancePool<T> where T : MonoBehaviour
 #if UNITY_EDITOR
         if (pool == null)
         {
-            // Pool lost, assuming due to hot reload.
+            // Pool丢失，假设是由于热重载造成的
             Object.Destroy(instance.gameObject);
             return;
         }
 #endif
-        pool.Push(instance);
-        instance.gameObject.SetActive(false);
+        pool.Push(instance);//添加
+        instance.gameObject.SetActive(false);//禁用
     }
 }

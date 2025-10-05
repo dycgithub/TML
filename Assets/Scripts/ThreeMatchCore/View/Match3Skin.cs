@@ -23,6 +23,8 @@ public class Match3Skin : MonoBehaviour
 {
     [SerializeField] private Tile[] tilePrefabs;//
     [SerializeField] private FloatingScore floatingScorePrefab;//浮点分数
+    [SerializeField]private RewadEffect rewardEffect;//生成得分特效 
+    [SerializeField] private Transform targetEffect;
     [SerializeField] private TMP_Text gameOverText, totalScoreText;//游戏结束文本，总分文本
     [SerializeField]private Match3GamePlay gamePlay;//游戏管理器
     
@@ -41,7 +43,7 @@ public class Match3Skin : MonoBehaviour
     private float floatingScoreZ;//浮动分数Z轴
     
     public bool IsBusy => busyDuration > 0f;//是否忙碌
-    public bool IsPlaying => IsBusy || gamePlay.PossibleMove.IsValid;//是否在玩
+    public bool IsPlaying => IsBusy || gamePlay.PossibleMove.IsValid;
 
     public void StartNewGame () {
 		busyDuration = 0f;
@@ -169,6 +171,7 @@ public class Match3Skin : MonoBehaviour
 		{
 			SingleScore score = gamePlay.Scores[i];
 			floatingScorePrefab.Show(new Vector3(score.position.x + tileOffset.x, score.position.y + tileOffset.y, floatingScoreZ), score.value);
+			rewardEffect.Show(new Vector3(score.position.x + tileOffset.x, score.position.y + tileOffset.y, floatingScoreZ),targetEffect.transform.position);
 			floatingScoreZ = floatingScoreZ <= -0.02f ? 0f : floatingScoreZ - 0.001f;
 		}
 	}

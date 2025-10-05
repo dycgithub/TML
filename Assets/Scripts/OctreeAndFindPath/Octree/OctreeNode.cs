@@ -37,7 +37,7 @@ public class OctreeNode//八叉树节点
 
     public OctreeNode(Bounds bounds, float minSize, OctreeNode parent)//构造函数
     {
-        this.id = Utils.idInt++;
+        this.id = Utils.idInt++;//确保每个节点id不同
         this.parent= parent;
         this.bounds = bounds;
         this.minSize = minSize;

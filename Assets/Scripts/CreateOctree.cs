@@ -65,13 +65,13 @@ public class CreateOctree : MonoBehaviour
         m_OnGUIPos.x = 0;
         if (GUI.Button(new Rect(m_OnGUIPos, m_OnGUISize), "执行改变"))
         {
-            GameObject obj = targetObjects[int.Parse(m_AddIndexStr)];
+            GameObject obj = targetObjects[int.Parse(m_AddIndexStr)];//parse功能是将字符串s转换为32位整数
             MoveMent move = movements[int.Parse(m_ChangeIndexStr)];
             
             if (obj != null && move != null)
             {
-                int found = octree.FindEmptyLeafNode(octree.rootNode, obj.transform.position);
-                Node graphNode = wayPointGraph.FindNode(found);
+                int found = octree.FindEmptyLeafNode(octree.rootNode, obj.transform.position);//查找八叉树节点
+                Node graphNode = wayPointGraph.FindNode(found);//找到八叉树对应的图中的节点
                 if (graphNode != null)
                 {
                     move.ReStartMove(graphNode.octreeNode, graphNode.octreeNode);
@@ -92,5 +92,10 @@ public class CreateOctree : MonoBehaviour
         m_Octree.DrawDebug();
         m_Octree.rootNode.DrawDebug();
         m_Octree.navigationGraph.DrawDebug();
+    }
+
+    public void MoveToTaregtUseDotween()
+    {
+        
     }
 }
