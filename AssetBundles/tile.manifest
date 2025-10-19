@@ -1,0 +1,41 @@
+ManifestFileVersion: 0
+CRC: 2693860916
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 87f3f7183034ce51e5afd7fd55edbe8f
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 10feac8a30bad34c40b318cdc64de218
+  IncrementalBuildHash:
+    serializedVersion: 2
+    Hash: 87f3f7183034ce51e5afd7fd55edbe8f
+HashAppended: 0
+ClassTypes:
+- Class: 1
+  Script: {instanceID: 0}
+- Class: 4
+  Script: {instanceID: 0}
+- Class: 21
+  Script: {instanceID: 0}
+- Class: 23
+  Script: {instanceID: 0}
+- Class: 33
+  Script: {instanceID: 0}
+- Class: 43
+  Script: {instanceID: 0}
+- Class: 114
+  Script: {fileID: 11500000, guid: d82c1905ffa9e8a40b07c519a98934b7, type: 3}
+- Class: 115
+  Script: {instanceID: 0}
+SerializeReferenceClassIdentifiers: []
+Assets:
+- Assets/Prefabs/Tile B.prefab
+- Assets/Prefabs/Tile G.prefab
+- Assets/Prefabs/Tile E.prefab
+- Assets/Prefabs/Tile D.prefab
+- Assets/Prefabs/Tile A.prefab
+- Assets/Prefabs/Tile C.prefab
+- Assets/Prefabs/Tile F.prefab
+Dependencies:
+- E:/unity/subjects/THREEMATCHlua/Assets/../AssetBundles/mat

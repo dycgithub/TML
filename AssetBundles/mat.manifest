@@ -1,0 +1,47 @@
+ManifestFileVersion: 0
+CRC: 2712558253
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 2541dea4f3ed255a0016352a040d49e1
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 174198a87ec093fa2aba82348c6674b6
+  IncrementalBuildHash:
+    serializedVersion: 2
+    Hash: 2541dea4f3ed255a0016352a040d49e1
+HashAppended: 0
+ClassTypes:
+- Class: 1
+  Script: {instanceID: 0}
+- Class: 4
+  Script: {instanceID: 0}
+- Class: 21
+  Script: {instanceID: 0}
+- Class: 23
+  Script: {instanceID: 0}
+- Class: 33
+  Script: {instanceID: 0}
+- Class: 43
+  Script: {instanceID: 0}
+- Class: 48
+  Script: {instanceID: 0}
+- Class: 114
+  Script: {fileID: 11500000, guid: 6651201d742733e4dbadef29ff525ae2, type: 3}
+- Class: 115
+  Script: {instanceID: 0}
+- Class: 135
+  Script: {instanceID: 0}
+SerializeReferenceClassIdentifiers: []
+Assets:
+- Assets/Materials/D.mat
+- Assets/Prefabs/RewardEffect.prefab
+- Assets/Materials/A.mat
+- Assets/Materials/C.mat
+- Assets/Materials/G.mat
+- Assets/Materials/B.mat
+- Assets/Materials/F.mat
+- Assets/Materials/YelllowBall.mat
+- Assets/Materials/E.mat
+- Assets/Materials/WhitePaddle.mat
+Dependencies: []

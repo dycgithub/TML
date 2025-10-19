@@ -37,7 +37,7 @@
       "vitality": 150
     },
     "description": "This is the best weapon.",
-    "stackable": false,
+    "stackable": true,
     "rarity": 6,
     "slug":  "golden-sword"
   }

@@ -146,7 +146,7 @@ public class Match3GamePlay : MonoBehaviour
 		}
 	}//滑落
 
-	void FillGrid ()
+	void FillGrid ()//填充时防止直接匹配
 	{
 		for (int y = 0; y < size.y; y++)
 		{

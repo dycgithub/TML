@@ -25,7 +25,7 @@ public class Match3Skin : MonoBehaviour
     [SerializeField] private FloatingScore floatingScorePrefab;//浮点分数
     [SerializeField]private RewadEffect rewardEffect;//生成得分特效 
     [SerializeField] private Transform targetEffect;
-    [SerializeField] private TMP_Text gameOverText, totalScoreText;//游戏结束文本，总分文本
+    private TMP_Text gameOverText, totalScoreText;//游戏结束文本，总分文本
     [SerializeField]private Match3GamePlay gamePlay;//游戏管理器
     
     [SerializeField,Range(0.1f,1f)] private float dragThreshold = 0.5f;//拖动阈值 
@@ -47,12 +47,16 @@ public class Match3Skin : MonoBehaviour
 
     public void StartNewGame () {
 		busyDuration = 0f;
+
+		totalScoreText = GameObject.Find("TotalScore").gameObject.GetComponent<TMP_Text>();
+		gameOverText=GameObject.Find("GameOver").gameObject.GetComponent<TMP_Text>();
+		
 		totalScoreText.SetText("0");
 		gameOverText.gameObject.SetActive(false);
 		
 		gamePlay.StartNewGame();
 		tileOffset = -0.5f * (float2)(gamePlay.Size - 1);
-		if (tiles.IsUndefined)
+		if (tiles.IsUndefined)//瓦片网格未定义
 		{
 			tiles = new(gamePlay.Size);
 		}

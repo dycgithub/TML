@@ -1,7 +1,5 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using TreeEditor;
 using UnityEngine;
 /// <summary>
 ///用params来输入键用string会GC

@@ -1,5 +1,8 @@
 
 using UnityEngine;
+using UnityEngine.EventSystems;
+using UnityEngine.UI;
+
 /// <summary>
 /// Controller
 /// 接收原始鼠标输入
@@ -10,12 +13,13 @@ public class MatchGameManager : MonoBehaviour
 {
     [SerializeField] private Match3Skin match3;
     [SerializeField] private bool automaticPlay;
+    [SerializeField]private UsePropLua usePropLua;
     
     private Vector3 dragStart;
     private bool isDragging;
     private void Awake()
     {
-        match3.StartNewGame();
+        //match3.StartNewGame();
     }
 
     private void Update()
@@ -30,6 +34,9 @@ public class MatchGameManager : MonoBehaviour
         }
         else if(Input.GetKeyDown(KeyCode.Space))
         {
+            Debug.Log("Space游戏开始");
+            GameObject luaButton = GameObject.Find("luaButton");
+            luaButton.gameObject.GetComponent<Button>().onClick.AddListener(usePropLua.MyCallLuaPropFunction);
             match3.StartNewGame();
         }
     }

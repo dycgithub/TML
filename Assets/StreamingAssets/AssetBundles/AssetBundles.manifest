@@ -1,0 +1,14 @@
+ManifestFileVersion: 0
+CRC: 1436745112
+AssetBundleManifest:
+  AssetBundleInfos:
+    Info_0:
+      Name: tile
+      Dependencies:
+        Dependency_0: mat
+    Info_1:
+      Name: ui
+      Dependencies: {}
+    Info_2:
+      Name: mat
+      Dependencies: {}
